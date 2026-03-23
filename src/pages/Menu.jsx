@@ -5,15 +5,15 @@ import menuData from '../data/menu.json';
 import { useCart } from '../context/CartContext';
 
 const CATEGORY_META = {
-  fruitJuices:    { label: 'Fruit Juices',      img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=60&q=60' },
-  specialJuices:  { label: 'Special Juices',     img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=60&q=60' },
-  dryFruitJuices: { label: 'Dry Fruit Juices',   img: 'https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=60&q=60' },
-  vegetableJuices:{ label: 'Vegetable Juices',   img: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=60&q=60' },
-  fruitSalads:    { label: 'Fruit Salads',        img: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=60&q=60' },
-  milkShakes:     { label: 'Milk Shakes',         img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=60&q=60' },
-  summerSpecials: { label: 'Summer Specials',     img: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=60&q=60' },
-  punchShots:     { label: 'Punch & Shots',       img: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=60&q=60' },
-  snacks:         { label: 'Snacks',              img: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=60&q=60' },
+  fruitJuices:    { label: 'Fruit Juices',      icon: '🍊', img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=60&q=60' },
+  specialJuices:  { label: 'Special Juices',    icon: '✨', img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=60&q=60' },
+  dryFruitJuices: { label: 'Dry Fruit',         icon: '🥜', img: 'https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=60&q=60' },
+  vegetableJuices:{ label: 'Veg Juices',        icon: '🥦', img: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=60&q=60' },
+  fruitSalads:    { label: 'Fruit Salads',       icon: '🥗', img: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=60&q=60' },
+  milkShakes:     { label: 'Shakes',             icon: '🥛', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=60&q=60' },
+  summerSpecials: { label: 'Summer',             icon: '☀️', img: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=60&q=60' },
+  punchShots:     { label: 'Punch & Shots',      icon: '🥃', img: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=60&q=60' },
+  snacks:         { label: 'Snacks',             icon: '🍿', img: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=60&q=60' },
 };
 
 const BADGE_STYLES = {
@@ -206,7 +206,7 @@ export default function Menu() {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-      className="min-h-screen" style={{ paddingTop: '7.8rem', paddingBottom: isMobile ? '5rem' : '2rem' }}>
+      className="min-h-screen" style={{ paddingTop: '7.8rem', paddingBottom: isMobile ? '7rem' : '2rem' }}>
 
       {/* Header */}
       <div className="border-b px-4 sm:px-6 lg:px-8 py-4" style={{ background: 'rgba(22,36,22,0.8)', borderColor: 'rgba(255,245,230,0.05)' }}>
@@ -281,30 +281,6 @@ export default function Menu() {
 
         {/* Items */}
         <div className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6">
-          {/* Mobile category chips */}
-          {isMobile && (
-            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 mb-5">
-              <div className="flex gap-2" style={{ width: 'max-content' }}>
-                <button onClick={() => setCategory('all')}
-                  className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-heading transition-all"
-                  style={{ background: activeCategory === 'all' ? '#f4a017' : 'rgba(244,160,23,0.1)', color: activeCategory === 'all' ? '#0f1f0f' : 'rgba(255,245,230,0.6)', border: '1px solid rgba(244,160,23,0.3)' }}>
-                  All <span className="opacity-70">({allItems.length})</span>
-                </button>
-                {CATEGORIES.map(cat => {
-                  const meta = CATEGORY_META[cat];
-                  const isActive = activeCategory === cat;
-                  return (
-                    <button key={cat} onClick={() => setCategory(cat)}
-                      className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-heading transition-all"
-                      style={{ background: isActive ? '#f4a017' : 'rgba(244,160,23,0.1)', color: isActive ? '#0f1f0f' : 'rgba(255,245,230,0.6)', border: '1px solid rgba(244,160,23,0.3)' }}>
-                      {meta?.label} <span className="opacity-70">({getCategoryCount(cat)})</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
           {/* Category heading + count */}
           {!isSearching && (
             <div className="mb-4 flex items-center gap-3">
@@ -328,9 +304,45 @@ export default function Menu() {
         </div>
       </div>
 
+      {/* Mobile bottom category tab bar */}
+      {isMobile && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-xl border-t overflow-x-auto scrollbar-hide"
+          style={{ background: 'rgba(15,31,15,0.98)', borderColor: 'rgba(244,160,23,0.12)' }}>
+          <div className="flex whitespace-nowrap py-1 px-1 gap-0.5">
+            <button
+              onClick={() => setCategory('all')}
+              className="flex-shrink-0 flex flex-col items-center gap-0.5 px-3 py-2 rounded-lg transition-all"
+              style={{
+                color: activeCategory === 'all' && !isSearching ? '#f4a017' : 'rgba(255,245,230,0.4)',
+                borderTop: activeCategory === 'all' && !isSearching ? '2px solid #f4a017' : '2px solid transparent',
+                background: activeCategory === 'all' && !isSearching ? 'rgba(244,160,23,0.05)' : 'transparent',
+              }}>
+              <span className="text-base">🍹</span>
+              <span className="text-[9px] font-heading tracking-wide">All</span>
+            </button>
+            {CATEGORIES.map(cat => {
+              const meta = CATEGORY_META[cat];
+              const isActive = activeCategory === cat && !isSearching;
+              return (
+                <button key={cat} onClick={() => setCategory(cat)}
+                  className="flex-shrink-0 flex flex-col items-center gap-0.5 px-3 py-2 rounded-lg transition-all"
+                  style={{
+                    color: isActive ? '#f4a017' : 'rgba(255,245,230,0.4)',
+                    borderTop: isActive ? '2px solid #f4a017' : '2px solid transparent',
+                    background: isActive ? 'rgba(244,160,23,0.05)' : 'transparent',
+                  }}>
+                  <span className="text-base">{meta?.icon}</span>
+                  <span className="text-[9px] font-heading tracking-wide">{meta?.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Mobile cart bar */}
       {isMobile && count > 0 && (
-        <motion.div initial={{ y: 100 }} animate={{ y: 0 }} className="fixed bottom-0 left-0 right-0 z-40 p-3">
+        <motion.div initial={{ y: 100 }} animate={{ y: 0 }} className="fixed left-0 right-0 z-50 p-3" style={{ bottom: '4rem' }}>
           <button onClick={openCart} className="w-full text-dark-900 py-4 rounded-2xl font-heading font-bold tracking-wider flex items-center justify-center gap-3 glow-amber"
             style={{ background: 'linear-gradient(135deg,#f7b84b,#f4a017)' }}>
             View Cart ({count} items)
