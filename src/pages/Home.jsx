@@ -4,30 +4,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import menuData from '../data/menu.json';
 
 const HERO_SLIDES = [
-  'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1600&q=80',
-  'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=1600&q=80',
-  'https://images.unsplash.com/photo-1546173159-315724a31696?w=1600&q=80',
-  'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1600&q=80',
+  'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=1600&q=80',
+  'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=1600&q=80',
+  'https://images.unsplash.com/photo-1478144592103-25e218a04891?w=1600&q=80',
+  'https://images.unsplash.com/photo-1497534446932-c925b458314e?w=1600&q=80',
   'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=1600&q=80',
 ];
 
-// Category images — all Unsplash, matched to menu content
+// All category images — carefully chosen Unsplash IDs for correct subjects
 const QUICK_CATS = [
-  { label: 'Fruit Juices', img: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=300&q=75', key: 'fruitJuices' },
-  { label: 'Special Juices', img: 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=300&q=75', key: 'specialJuices' },
-  { label: 'Dry Fruit Juices', img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300&q=75', key: 'dryFruitJuices' },
-  { label: 'Vegetable Juices', img: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=300&q=75', key: 'vegetableJuices' },
-  { label: 'Fruit Salads', img: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=300&q=75', key: 'fruitSalads' },
-  { label: 'Milk Shakes', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&q=75', key: 'milkShakes' },
-  { label: 'Summer Specials', img: 'https://images.unsplash.com/photo-1583167617041-7d3c56d17ff9?w=300&q=75', key: 'summerSpecials' },
-  { label: 'Punch & Shots', img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?w=300&q=75', key: 'punchShots' },
-  { label: 'Snacks', img: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=300&q=75', key: 'snacks' },
+  { label: 'Fruit Juices',     img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=300&q=80', key: 'fruitJuices' },
+  { label: 'Special Juices',   img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=300&q=80', key: 'specialJuices' },
+  { label: 'Dry Fruit Juices', img: 'https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=300&q=80', key: 'dryFruitJuices' },
+  { label: 'Vegetable Juices', img: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=300&q=80', key: 'vegetableJuices' },
+  { label: 'Fruit Salads',     img: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=300&q=80', key: 'fruitSalads' },
+  { label: 'Milk Shakes',      img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&q=80', key: 'milkShakes' },
+  { label: 'Summer Specials',  img: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=300&q=80', key: 'summerSpecials' },
+  { label: 'Punch & Shots',    img: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=300&q=80', key: 'punchShots' },
+  { label: 'Snacks',           img: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=300&q=80', key: 'snacks' },
 ];
 
 const BRANCHES = [
-  { name: 'Royal Juice Center', location: 'Main Branch — Shivam Pally, Hyderabad', img: 'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=300&q=75' },
-  { name: 'Royal Juice Center', location: 'Gacchi Bowli, Hyderabad', img: 'https://images.unsplash.com/photo-1546173159-315724a31696?w=300&q=75' },
-  { name: 'Taj Juice Center', location: 'Hussaini Alam, Hyderabad', img: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=300&q=75' },
+  { name: 'Royal Juice Center', location: 'Main Branch — Shivam Pally, Hyderabad', img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400&q=80' },
+  { name: 'Royal Juice Center', location: 'Gacchi Bowli, Hyderabad',               img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&q=80' },
+  { name: 'Taj Juice Center',   location: 'Hussaini Alam, Hyderabad',               img: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=400&q=80' },
 ];
 
 function HeroSlideshow() {
@@ -121,9 +121,9 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="flex gap-8 mt-10">
               {[
-                { label: 'Menu Items', node: <CountUp end={totalItems} suffix="+" duration={1500}/> },
+                { label: 'Menu Items',      node: <CountUp end={totalItems} suffix="+" duration={1500}/> },
                 { label: 'Happy Customers', node: <CountUp end={50000} suffix="+" duration={2500}/> },
-                { label: 'Branches', node: <CountUp end={4} suffix="" duration={800}/> },
+                { label: 'Branches',        node: <CountUp end={4} suffix="" duration={800}/> },
               ].map(({ label, node }) => (
                 <div key={label}>
                   <p className="font-display text-2xl sm:text-3xl" style={{ color: '#f4a017' }}>{node}</p>
@@ -167,12 +167,12 @@ export default function Home() {
             <motion.div key={label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
               <Link to={`/menu?cat=${key}`} className="flex flex-col items-center gap-2 group">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden group-hover:scale-105 transition-all duration-300 shadow-md"
-                  style={{ border: '2px solid rgba(244,160,23,0.15)' }}>
+                  style={{ border: '2px solid rgba(244,160,23,0.2)' }}>
                   <img src={img} alt={label} loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={e => { e.target.parentElement.style.background = '#1e3020'; e.target.style.display = 'none'; }}/>
                 </div>
-                <span className="text-cream/55 text-[10px] sm:text-xs font-heading group-hover:text-amber-primary transition-colors text-center leading-tight"
-                  style={{ '--tw-text-opacity': 1 }}>{label}</span>
+                <span className="text-cream/55 text-[10px] sm:text-xs font-heading group-hover:text-amber-primary transition-colors text-center leading-tight">{label}</span>
               </Link>
             </motion.div>
           ))}
@@ -232,7 +232,7 @@ export default function Home() {
               <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="rounded-2xl overflow-hidden" style={{ background: '#162416', border: '1px solid rgba(244,160,23,0.2)' }}>
                 <div className="h-32 overflow-hidden">
-                  <img src={img} alt={name} className="w-full h-full object-cover opacity-70 hover:scale-105 transition-transform duration-500"/>
+                  <img src={img} alt={name} className="w-full h-full object-cover opacity-75 hover:scale-105 transition-transform duration-500"/>
                 </div>
                 <div className="p-5 text-center">
                   <h3 className="font-heading font-bold text-cream text-base mb-1">{name}</h3>
@@ -252,9 +252,9 @@ export default function Home() {
               <div className="absolute inset-0 blur-3xl rounded-3xl opacity-15" style={{ background: '#f4a017' }}/>
               <div className="relative grid grid-cols-2 gap-3">
                 {[
-                  { src: 'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=800&q=80', cls: 'col-span-2 aspect-video' },
-                  { src: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=80', cls: 'col-span-1 aspect-square' },
-                  { src: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&q=80', cls: 'col-span-1 aspect-square' },
+                  { src: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=800&q=80', cls: 'col-span-2 aspect-video' },
+                  { src: 'https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=400&q=80', cls: 'col-span-1 aspect-square' },
+                  { src: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400&q=80', cls: 'col-span-1 aspect-square' },
                 ].map(({ src, cls }, i) => (
                   <div key={i} className={`${cls} rounded-2xl overflow-hidden`}>
                     <img src={src} alt="Royal Juice Center" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
@@ -291,8 +291,8 @@ export default function Home() {
             className="relative rounded-3xl p-10 sm:p-12 text-center overflow-hidden"
             style={{ background: 'rgba(244,160,23,0.07)', border: '1px solid rgba(244,160,23,0.25)' }}>
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right,transparent,#f4a017,transparent)' }}/>
-            <div className="w-16 h-16 rounded-2xl overflow-hidden mx-auto mb-4">
-              <img src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=200&q=80" alt="Royal Juice" className="w-full h-full object-cover"/>
+            <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-5">
+              <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=200&q=80" alt="Royal Juice" className="w-full h-full object-cover"/>
             </div>
             <h2 className="font-display text-4xl sm:text-5xl text-cream mb-3">
               Thirsty? <span style={{ color: '#f4a017' }}>We Have You Covered.</span>

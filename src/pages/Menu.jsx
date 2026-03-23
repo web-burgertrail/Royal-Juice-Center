@@ -5,14 +5,14 @@ import menuData from '../data/menu.json';
 import { useCart } from '../context/CartContext';
 
 const CATEGORY_META = {
-  fruitJuices:    { label: 'Fruit Juices',      img: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=60&q=60' },
-  specialJuices:  { label: 'Special Juices',     img: 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=60&q=60' },
-  dryFruitJuices: { label: 'Dry Fruit Juices',   img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=60&q=60' },
-  vegetableJuices:{ label: 'Vegetable Juices',   img: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=60&q=60' },
-  fruitSalads:    { label: 'Fruit Salads',        img: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=60&q=60' },
+  fruitJuices:    { label: 'Fruit Juices',      img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=60&q=60' },
+  specialJuices:  { label: 'Special Juices',     img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=60&q=60' },
+  dryFruitJuices: { label: 'Dry Fruit Juices',   img: 'https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=60&q=60' },
+  vegetableJuices:{ label: 'Vegetable Juices',   img: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=60&q=60' },
+  fruitSalads:    { label: 'Fruit Salads',        img: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=60&q=60' },
   milkShakes:     { label: 'Milk Shakes',         img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=60&q=60' },
-  summerSpecials: { label: 'Summer Specials',     img: 'https://images.unsplash.com/photo-1583167617041-7d3c56d17ff9?w=60&q=60' },
-  punchShots:     { label: 'Punch & Shots',       img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e?w=60&q=60' },
+  summerSpecials: { label: 'Summer Specials',     img: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=60&q=60' },
+  punchShots:     { label: 'Punch & Shots',       img: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=60&q=60' },
   snacks:         { label: 'Snacks',              img: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=60&q=60' },
 };
 
