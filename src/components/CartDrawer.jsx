@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 export default function CartDrawer() {
   const { isOpen, closeCart, items, total, updateQty, removeItem, clearCart } = useCart();
+  const [confirmClear, setConfirmClear] = useState(false);
 
   return (
     <AnimatePresence>
@@ -20,52 +21,72 @@ export default function CartDrawer() {
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid rgba(255,245,230,0.07)' }}>
               <div>
-                <h2 className="font-heading font-bold text-cream text-lg">🛒 Your Cart</h2>
+                <h2 className="font-heading font-bold text-cream text-lg">Your Cart</h2>
                 {items.length > 0 && <p className="text-cream/40 text-xs font-body">{items.length} item(s)</p>}
               </div>
-              <button onClick={closeCart} className="w-8 h-8 rounded-full flex items-center justify-center text-cream/60 hover:text-cream transition-colors"
-                style={{ background: 'rgba(255,245,230,0.07)' }}>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>
-              </button>
+              <div className="flex items-center gap-2">
+                {items.length > 0 && !confirmClear && (
+                  <button onClick={() => setConfirmClear(true)}
+                    className="text-red-400/60 hover:text-red-400 text-xs font-heading transition-colors px-2 py-1 rounded-lg"
+                    style={{ background: 'rgba(239,68,68,0.08)' }}>
+                    Clear all
+                  </button>
+                )}
+                {confirmClear && (
+                  <div className="flex items-center gap-1.5">
+                    <button onClick={() => { clearCart(); setConfirmClear(false); }}
+                      className="text-red-400 text-xs font-heading px-2 py-1 rounded-lg"
+                      style={{ background: 'rgba(239,68,68,0.15)' }}>
+                      Yes, clear
+                    </button>
+                    <button onClick={() => setConfirmClear(false)} className="text-cream/40 text-xs font-heading">Cancel</button>
+                  </div>
+                )}
+                <button onClick={closeCart} className="w-8 h-8 rounded-full flex items-center justify-center text-cream/60 hover:text-cream transition-colors"
+                  style={{ background: 'rgba(255,245,230,0.07)' }}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+              </div>
             </div>
 
             {/* Items */}
             <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3">
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center">
-                  <div className="text-6xl mb-4">🥤</div>
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-4">
+                    <img src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=200&q=80" alt="" className="w-full h-full object-cover opacity-60"/>
+                  </div>
                   <p className="font-heading font-bold text-cream mb-2">Your cart is empty</p>
-                  <p className="text-cream/40 text-sm font-body mb-6">Add some fresh juices!</p>
-                  <button onClick={closeCart}>
-                    <Link to="/menu" onClick={closeCart} className="text-dark-900 px-6 py-2.5 rounded-full font-heading font-bold text-sm"
-                      style={{ background: 'linear-gradient(135deg, #f7b84b, #f4a017)' }}>
-                      Browse Menu
-                    </Link>
-                  </button>
+                  <p className="text-cream/40 text-sm font-body mb-6">Add some fresh juices to get started!</p>
+                  <Link to="/menu" onClick={closeCart}
+                    className="text-dark-900 px-6 py-2.5 rounded-full font-heading font-bold text-sm"
+                    style={{ background: 'linear-gradient(135deg,#f7b84b,#f4a017)' }}>
+                    Browse Menu
+                  </Link>
                 </div>
               ) : items.map(item => (
                 <motion.div key={item.id} layout initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                   className="flex gap-3 p-3 rounded-xl" style={{ background: 'rgba(244,160,23,0.06)', border: '1px solid rgba(244,160,23,0.12)' }}>
                   <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0" style={{ background: '#1e3020' }}>
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover"
-                      onError={e => { e.target.style.display = 'none'; e.target.parentElement.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem">${item.fallback||'🥤'}</div>`; }}/>
+                      onError={e => { e.target.style.display = 'none'; }}/>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-heading font-bold text-cream text-sm line-clamp-1">{item.name}</p>
-                    <p className="font-body text-xs" style={{ color: '#f4a017' }}>₹{item.price} each</p>
+                    <p className="font-body text-xs" style={{ color: '#f4a017' }}>Rs.{item.price} each</p>
                     <div className="flex items-center justify-between mt-1.5">
                       <div className="flex items-center gap-1.5">
                         <button onClick={() => updateQty(item.id, item.quantity - 1)}
-                          className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs text-cream transition-all hover:scale-110"
+                          className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs text-cream"
                           style={{ background: 'rgba(244,160,23,0.2)' }}>-</button>
                         <span className="text-cream font-bold text-sm w-5 text-center">{item.quantity}</span>
                         <button onClick={() => updateQty(item.id, item.quantity + 1)}
-                          className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs text-dark-900 transition-all hover:scale-110"
+                          className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs text-dark-900"
                           style={{ background: '#f4a017' }}>+</button>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="font-heading font-bold text-sm" style={{ color: '#f4a017' }}>₹{item.price * item.quantity}</span>
-                        <button onClick={() => removeItem(item.id)} className="text-cream/30 hover:text-red-400 transition-colors">
+                        <span className="font-heading font-bold text-sm" style={{ color: '#f4a017' }}>Rs.{item.price * item.quantity}</span>
+                        <button onClick={() => removeItem(item.id)} className="text-cream/25 hover:text-red-400 transition-colors">
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                         </button>
                       </div>
@@ -78,16 +99,11 @@ export default function CartDrawer() {
             {/* Footer */}
             {items.length > 0 && (
               <div className="px-5 py-4" style={{ borderTop: '1px solid rgba(255,245,230,0.07)' }}>
-                {items.length > 1 && (
-                  <button onClick={clearCart} className="w-full text-cream/40 hover:text-red-400 text-xs font-body text-center mb-3 transition-colors">
-                    Clear all items
-                  </button>
-                )}
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-heading font-bold text-cream">Total</span>
-                  <span className="font-display text-2xl" style={{ color: '#f4a017' }}>₹{total}</span>
+                  <span className="font-display text-2xl" style={{ color: '#f4a017' }}>Rs.{total}</span>
                 </div>
-                <a href={`https://wa.me/919281410305?text=${encodeURIComponent(`Hello Royal Juice Center! 🥤\n\nI'd like to order:\n${items.map(i => `• ${i.name} x${i.quantity} = ₹${i.price * i.quantity}`).join('\n')}\n\nTotal: ₹${total}`)}`}
+                <a href={`https://wa.me/919281410305?text=${encodeURIComponent(`Hello Royal Juice Center!\n\nI would like to order:\n${items.map(i => `${i.name} x${i.quantity} = Rs.${i.price * i.quantity}`).join('\n')}\n\nTotal: Rs.${total}`)}`}
                   target="_blank" rel="noopener noreferrer" onClick={closeCart}
                   className="flex items-center justify-center gap-2 text-white w-full py-4 rounded-2xl font-heading font-bold text-base transition-all hover:scale-[1.02] glow-green"
                   style={{ background: '#25D366' }}>
